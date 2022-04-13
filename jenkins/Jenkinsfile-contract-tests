@@ -45,6 +45,8 @@ pipeline {
     stage('Run Contract Tests') {
       steps {
         //${params.pactConsumerName}
+        sh 'go version'
+        sh 'go mod tidy'
         sh "make provider"
         sh "${PACT_DOCKER_CLI} create-version-tag -t [C]${params.pactConsumerTags} -a ${SERVICE_NAME} -e ${GIT_COMMIT}"
       }

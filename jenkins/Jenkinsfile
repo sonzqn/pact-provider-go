@@ -28,6 +28,8 @@ pipeline {
   stages {
     stage ('Build & Test') {
       steps {
+        sh 'go version'
+        sh 'go mod tidy'
         sh "make provider"
         sh "${PACT_DOCKER_CLI} create-version-tag -t ${BRANCH_NAME} -a ${SERVICE_NAME} -e ${GIT_COMMIT}"
       }
