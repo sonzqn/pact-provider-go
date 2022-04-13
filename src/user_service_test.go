@@ -11,8 +11,8 @@ import (
 	"github.com/pact-foundation/pact-go/dsl"
 	"github.com/pact-foundation/pact-go/types"
 	"github.com/pact-foundation/pact-go/utils"
-	"github.com/pact-foundation/pact-workshop-go/model"
-	"github.com/pact-foundation/pact-workshop-go/provider/repository"
+	"github.com/sonzqn/pact-provider-go/model"
+	"github.com/sonzqn/pact-provider-go/src/repository"
 )
 
 // The Provider verification
@@ -120,7 +120,7 @@ var sallyUnauthorized = &repository.UserRepository{
 // Setup the Pact client.
 func createPact() dsl.Pact {
 	return dsl.Pact{
-		Provider: "GoUserService",
+		Provider: os.Getenv("PROVIDER_NAME"),
 		LogDir:   logDir,
 		LogLevel: "INFO",
 	}

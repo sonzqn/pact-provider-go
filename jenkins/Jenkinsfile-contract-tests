@@ -15,7 +15,7 @@ pipeline {
   }
 
   environment {
-    SERVICE_NAME = "provider-java"
+    SERVICE_NAME = "provider-go"
     PACT_DOCKER_CLI = "sudo docker run \
                            -e PACT_BROKER_BASE_URL='http://localhost:9292' \
                            -e PACT_BROKER_USERNAME='pb_username' \

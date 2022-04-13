@@ -1,0 +1,16 @@
+# Logfile created on 2022-04-13 14:12:00 +0700 by logger.rb/47272
+I, [2022-04-13T14:16:46.993347 #47700]  INFO -- : Running example 'Verifying a pact between consumer-go and provider-go Given User sally exists A request to login with user 'sally' with GET /user/10 returns a response which has status code 200'
+I, [2022-04-13T14:16:46.999654 #47700]  INFO -- : Sending GET request to path: "/user/10" with headers: {"HTTP_AUTHORIZATION"=>"Bearer 2019-01-01", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Authorization", "X_PACT_PROVIDER_STATES"=>[{"name"=>"User sally exists"}]}, see debug logs for body
+D, [2022-04-13T14:16:46.999715 #47700] DEBUG -- : body :
+I, [2022-04-13T14:16:47.014761 #47700]  INFO -- : Received response with status: 200, headers: {"Content-Length"=>"109", "Content-Type"=>"application/json; charset=utf-8", "Date"=>"Wed, 13 Apr 2022 07:16:47 GMT", "X-Api-Correlation-Id"=>"fbfac30f-78b9-4407-a3dd-3a5bfa840c03"}, see debug logs for body
+D, [2022-04-13T14:16:47.014824 #47700] DEBUG -- : body: {"firstName":"Jean-Marie","lastName":"de La Beaujardière😀😍","username":"sally","type":"admin","id":10}
+I, [2022-04-13T14:16:47.017399 #47700]  INFO -- : Running example 'Verifying a pact between consumer-go and provider-go Given User sally does not exist A request to login with user 'sally' with GET /user/10 returns a response which has status code 404'
+I, [2022-04-13T14:16:47.018818 #47700]  INFO -- : Sending GET request to path: "/user/10" with headers: {"HTTP_AUTHORIZATION"=>"Bearer 2019-01-01", "HTTP_X_PACT_ORIGINAL_HEADER_NAMES"=>"Authorization", "X_PACT_PROVIDER_STATES"=>[{"name"=>"User sally does not exist"}]}, see debug logs for body
+D, [2022-04-13T14:16:47.018861 #47700] DEBUG -- : body :
+I, [2022-04-13T14:16:47.020641 #47700]  INFO -- : Received response with status: 404, headers: {"Content-Length"=>"0", "Content-Type"=>"application/json; charset=utf-8", "Date"=>"Wed, 13 Apr 2022 07:16:47 GMT", "X-Api-Correlation-Id"=>"5bd94e0b-3fe5-4956-86f7-99c3a4420a7d"}, see debug logs for body
+D, [2022-04-13T14:16:47.020686 #47700] DEBUG -- : body: 
+I, [2022-04-13T14:16:47.022050 #47700]  INFO -- : Running example 'Verifying a pact between consumer-go and provider-go Given User is not authenticated A request to login with user 'sally' with GET /user/10 returns a response which has status code 401'
+I, [2022-04-13T14:16:47.023084 #47700]  INFO -- : Sending GET request to path: "/user/10" with headers: {"X_PACT_PROVIDER_STATES"=>[{"name"=>"User is not authenticated"}]}, see debug logs for body
+D, [2022-04-13T14:16:47.023121 #47700] DEBUG -- : body :
+I, [2022-04-13T14:16:47.024492 #47700]  INFO -- : Received response with status: 401, headers: {"Content-Length"=>"0", "Content-Type"=>"application/json; charset=utf-8", "Date"=>"Wed, 13 Apr 2022 07:16:47 GMT", "X-Api-Correlation-Id"=>"1581756f-5925-43a7-8570-bda148b2d232"}, see debug logs for body
+D, [2022-04-13T14:16:47.024532 #47700] DEBUG -- : body: 

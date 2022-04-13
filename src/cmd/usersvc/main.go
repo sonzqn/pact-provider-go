@@ -5,7 +5,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/pact-foundation/pact-workshop-go/provider"
+	"github.com/sonzqn/pact-provider-go/src"
 )
 
 func main() {

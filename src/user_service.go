@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/pact-foundation/pact-workshop-go/model"
-	"github.com/pact-foundation/pact-workshop-go/provider/repository"
+	"github.com/sonzqn/pact-provider-go/model"
+	"github.com/sonzqn/pact-provider-go/src/repository"
 )
 
 var userRepository = &repository.UserRepository{

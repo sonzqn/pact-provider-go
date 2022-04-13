@@ -4,8 +4,7 @@ pipeline {
   agent any
 
   tools {
-    jdk 'jdk 8'
-    maven 'mvn 3.8'
+    go 'go 1.18.1'
   }
 
   parameters {
@@ -13,7 +12,7 @@ pipeline {
   }
 
   environment {
-    SERVICE_NAME = "provider-java"
+    SERVICE_NAME = "provider-go"
     BRANCH_NAME = env.GIT_BRANCH.replace("origin/", "")
     PACT_URL = "http://localhost:9292"
     PACT_DOCKER_CLI = "sudo docker run \

@@ -1,4 +1,4 @@
-module github.com/sonzqn/pact-consumer-go
+module github.com/sonzqn/pact-provider-go
 
 go 1.14
 
