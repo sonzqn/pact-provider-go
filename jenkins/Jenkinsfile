@@ -14,18 +14,24 @@ pipeline {
   environment {
     SERVICE_NAME = "provider-go"
     BRANCH_NAME = env.GIT_BRANCH.replace("origin/", "")
-    PACT_URL = "http://localhost:9292"
+    PACT_BROKER_URL = "http://localhost:9292"
+    PACT_BROKER_USERNAME = "pb_username"
+    PACT_BROKER_PASSWORD = "pb_password"
     PACT_DOCKER_CLI = "sudo docker run \
-                           -e PACT_BROKER_BASE_URL='http://localhost:9292' \
-                           -e PACT_BROKER_USERNAME='pb_username' \
-                           -e PACT_BROKER_PASSWORD='pb_password' \
+                           -e PACT_BROKER_BASE_URL='${PACT_BROKER_URL}' \
+                           -e PACT_BROKER_USERNAME='${PACT_BROKER_USERNAME}' \
+                           -e PACT_BROKER_PASSWORD='${PACT_BROKER_PASSWORD}' \
                            --network host --rm pactfoundation/pact-cli:0.50.0.21 broker"
   }
 
   stages {
     stage ('Build & Test') {
       steps {
-        sh "mvn clean verify -Dpactbroker.consumerversionselectors.tags=SIT_ENV -Dpact.provider.version=${GIT_COMMIT} -Dpact.provider.tag=${BRANCH_NAME} -Dpact.verifier.publishResults=true"
+        sh "export PROVIDER_VERSION=${GIT_COMMIT} && \
+                      export CONSUMER_TAG_SELECTOR=SIT_ENV && \
+                      export PACT_BROKER_URL=${PACT_BROKER_URL} && \
+                      make provider"
+        sh "${PACT_DOCKER_CLI} create-version-tag -t ${BRANCH_NAME} -a ${SERVICE_NAME} -e ${GIT_COMMIT}"
       }
     }
     stage('[Pact] Version & Tag Init') {
