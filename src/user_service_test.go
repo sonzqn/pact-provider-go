@@ -29,7 +29,7 @@ func TestPactProvider(t *testing.T) {
 		BrokerUsername:             os.Getenv("PACT_BROKER_USERNAME"),
 		BrokerPassword:             os.Getenv("PACT_BROKER_PASSWORD"),
 		PublishVerificationResults: true,
-		ProviderVersion:            os.Getenv("PROVIDER_VERSION"),
+		ProviderVersion:            os.Getenv("GIT_COMMIT"),
 		StateHandlers:              stateHandlers,
 		RequestFilter:              fixBearerToken,
 		BeforeEach: func() error {

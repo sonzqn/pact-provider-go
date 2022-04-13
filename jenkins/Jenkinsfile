@@ -22,15 +22,13 @@ pipeline {
                            -e PACT_BROKER_USERNAME='${PACT_BROKER_USERNAME}' \
                            -e PACT_BROKER_PASSWORD='${PACT_BROKER_PASSWORD}' \
                            --network host --rm pactfoundation/pact-cli:0.50.0.21 broker"
+    CONSUMER_TAG_SELECTOR="SIT_ENV"
   }
 
   stages {
     stage ('Build & Test') {
       steps {
-        sh "export PROVIDER_VERSION=${GIT_COMMIT} && \
-                      export CONSUMER_TAG_SELECTOR=SIT_ENV && \
-                      export PACT_BROKER_URL=${PACT_BROKER_URL} && \
-                      make provider"
+        sh "make provider"
         sh "${PACT_DOCKER_CLI} create-version-tag -t ${BRANCH_NAME} -a ${SERVICE_NAME} -e ${GIT_COMMIT}"
       }
     }
