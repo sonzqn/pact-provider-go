@@ -24,7 +24,7 @@ pipeline {
                            -e PACT_BROKER_USERNAME='${PACT_BROKER_USERNAME}' \
                            -e PACT_BROKER_PASSWORD='${PACT_BROKER_PASSWORD}' \
                            --network host --rm pactfoundation/pact-cli:0.50.0.21 broker"
-    CONSUMER_TAG_SELECTOR=params.pactConsumerTags
+    CONSUMER_TAG_SELECTOR="${params.pactConsumerTags}"
   }
 
   stages {
